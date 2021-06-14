@@ -1,0 +1,42 @@
+* {
+  font-family: sans-serif;
+}
+.whole-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-form-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 15vh;
+  border-bottom: 1px solid rgb(224, 224, 224);
+}
+
+input {
+  padding: 0.4rem;
+  margin-right: 0.5rem;
+}
+
+.record {
+  display: flex;
+  width: 25vw;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+
+.btn-area {
+  margin-top: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  padding: 0.25rem 0.5rem;
+}
