@@ -1,7 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 import "./HomePage.css";
 
-const HomePage = ({ onHomePage, setOnHomePage }) => {
+const HomePage = () => {
   return (
     <div>
       <header className="header">
@@ -11,14 +13,9 @@ const HomePage = ({ onHomePage, setOnHomePage }) => {
         <p>歡迎光臨我的頁面</p>
       </section>
       <section className="btn-area">
-        <button
-          className="start-btn"
-          onClick={() => {
-            setOnHomePage(!onHomePage);
-          }}
-        >
-          點此開始
-        </button>
+        <Link to="/list">
+          <button className="start-btn">點此開始</button>
+        </Link>
       </section>
     </div>
   );

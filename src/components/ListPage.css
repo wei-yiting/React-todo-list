@@ -24,10 +24,22 @@ input {
 
 .record {
   display: flex;
-  width: 25vw;
-  justify-content: space-between;
+  max-width: 400px;
+  width: 50vw;
+  justify-content: center;
   align-items: center;
   margin: 1rem;
+}
+
+.record-item {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.record-item button {
+  margin-right: 1rem;
 }
 
 .btn-area {

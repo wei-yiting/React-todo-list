@@ -1,10 +1,21 @@
 import React from "react";
+import firebase from "firebase";
 
-const ListPage = ({ inputText, setInputText, recordList, setRecordList }) => {
+const ListPage = ({
+  inputText,
+  setInputText,
+  recordList,
+  setRecordList,
+  recordRef,
+}) => {
   const onFormSubmit = (evt) => {
     evt.preventDefault();
     setRecordList([...recordList, inputText]);
     setInputText("");
+    recordRef.add({
+      text: inputText,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    });
   };
   return (
     <div className="input-form-area">

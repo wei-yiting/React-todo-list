@@ -1,17 +1,51 @@
-import React from "react";
-import nextId from "react-id-generator";
+import React, { useState, useRef } from "react";
+import { db } from "../firebase";
 
 const List = ({ recordList, setRecordList }) => {
-  const handleDelete = (indexClicked) => {
-    setRecordList(recordList.filter((item, index) => index !== indexClicked));
+  const [recordEdit, setRecordEdit] = useState(null);
+  const editRef = useRef();
+
+  const updateRecord = (id) => {
+    db.collection("records").doc(id).update({
+      text: editRef.current.value,
+    });
+    setRecordEdit(null);
   };
-  const renderedList = recordList.map((record, index) => {
+
+  const handleDelete = (id) => {
+    db.collection("records").doc(id).delete();
+  };
+
+  const renderedList = recordList.map((record) => {
     return (
-      <div key={nextId()} className="record">
-        <span>{record}</span>
+      <div key={record.id} className="record">
+        {recordEdit === record.id ? (
+          <form
+            className="record-item"
+            onSubmit={(evt) => {
+              evt.preventDefault();
+              updateRecord(record.id);
+            }}
+          >
+            <input type="text" ref={editRef} defaultValue={record.record} />
+            <button type="submit">完成編輯</button>
+          </form>
+        ) : (
+          <div className="record-item">
+            <span>{record.record}</span>
+            <button
+              onClick={() => {
+                setRecordEdit(record.id);
+              }}
+            >
+              編輯
+            </button>
+          </div>
+        )}
+
         <button
           onClick={() => {
-            handleDelete(index);
+            handleDelete(record.id);
           }}
         >
           刪除

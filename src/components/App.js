@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+
 import HomePage from "./HomePage";
 import ListPage from "./ListPage";
 
 const App = () => {
-  const [onHomePage, setOnHomePage] = useState(true);
   return (
-    <div>
-      {onHomePage ? (
-        <HomePage onHomePage={onHomePage} setOnHomePage={setOnHomePage} />
-      ) : (
-        <ListPage onHomePage={onHomePage} setOnHomePage={setOnHomePage} />
-      )}
-    </div>
+    <BrowserRouter>
+      <div>
+        <Switch>
+          <Route path="/" exact component={HomePage} />
+          <Route path="/list" component={ListPage} />
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 };
 
